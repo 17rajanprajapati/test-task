@@ -1,7 +1,7 @@
 'use strict';
 
 const SERVICES = require('../services');
-const Joi = require('@hapi/joi');
+const Joi = require('joi');
 
 const { MESSAGES, ERROR_TYPES, AVAILABLE_AUTHS } = require('./constants');
 const HELPERS = require('../helpers');

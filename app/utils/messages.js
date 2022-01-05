@@ -12,5 +12,7 @@ module.exports = {
   FILE_REQUIRED_IN_PAYLOAD: 'File required in payload',
   PROFILE_FETCHED_SUCCESSFULLY: 'User profile fetched successfully',
   NOT_FOUND: 'Data not found',
-  FILE_UPLOADED_SUCCESSFULLY: 'File uploaded successfully'
+  FILE_UPLOADED_SUCCESSFULLY: 'File uploaded successfully',
+  EMAIL_ALREADY_EXISTS: 'This email is already registered with system',
+  EMAIL_CANNOT_BE_SAME_AS_PREVIOUS_EMAIL: 'Email cannot be same as previous email'
 };

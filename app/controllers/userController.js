@@ -43,7 +43,7 @@ userController.registerNewUser = async (payload) => {
  */
 userController.getUserProfile = async (payload) => {
   let criteria = { _id: payload.user._id };
-  let user = await SERVICES.userService.getUser(criteria, { ...NORMAL_PROJECTION, password: 0, isRestored: 0 });
+  let user = await SERVICES.userService.getUser(criteria, { ...NORMAL_PROJECTION, password: 0 });
   if (user) {
     return Object.assign(HELPERS.responseHelper.createSuccessResponse(MESSAGES.PROFILE_FETCHED_SUCCESSFULLY), { data: user });
   }
@@ -94,11 +94,15 @@ userController.login = async (payload) => {
  * @returns 
  */
 userController.updateProfile = async (payload) => {
-  // if (payload.hasOwnProperty('email')) {
-  //   let isEmailAlreadyExists = await SERVICES.userService.getUser({ email: payload.email, isDeleted: false });
-  //   if (isEmailAlreadyExists)
-  //     throw HELPERS.responseHelper.createErrorResponse(MESSAGES.EMAIL_ALREADY_EXISTS, ERROR_TYPES.BAD_REQUEST);
-  // }
+  if (payload.hasOwnProperty('email')) {
+    let isAlreadyExistUser = await SERVICES.userService.getUser({ email: payload.email });
+
+    if (isAlreadyExistUser) {
+      let responseMessage = payload.email === isAlreadyExistUser.email ? MESSAGES.EMAIL_CANNOT_BE_SAME_AS_PREVIOUS_EMAIL : MESSAGES.EMAIL_ALREADY_EXISTS;
+      throw HELPERS.responseHelper.createErrorResponse(responseMessage, ERROR_TYPES.BAD_REQUEST);
+    }
+
+  }
 
   // if user wants to change his password then compare old password.
   if (payload.hasOwnProperty('oldPassword')) {

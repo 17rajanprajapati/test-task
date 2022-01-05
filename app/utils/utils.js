@@ -24,7 +24,7 @@ commonFunctions.compareHash = (payloadPassword, userPasswordHash) => {
 commonFunctions.encryptJwt = (payload) => {
   let token = JWT.sign(payload, CONSTANTS.SECURITY.JWT_SIGN_KEY, {
     algorithm: 'HS256',
-    expiresIn: '5M'       // define expiry time here we take 5 minutes for now
+    expiresIn: '15M'       // define expiry time here we take 5 minutes for now
   });
   return token;
 };

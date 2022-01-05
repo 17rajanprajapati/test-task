@@ -1,9 +1,9 @@
 'use strict';
 
-const Joi = require('@hapi/joi');
+const Joi = require('joi');
 const { AVAILABLE_AUTHS } = require(`../../utils/constants`);
 //load controllers
-const { getServerResponse, registerNewUser, login, uploadFile, updateProfile, getUserData } = require(`../../controllers/userController`);
+const {  registerNewUser, login, uploadFile, updateProfile, getUserProfile } = require(`../../controllers/userController`);
 
 let routes = [
 	{
@@ -74,7 +74,7 @@ let routes = [
 			}
 		},
 		auth: AVAILABLE_AUTHS.USER,
-		handler: getUserData
+		handler: getUserProfile
 	}
 ];
 
