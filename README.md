@@ -1,5 +1,5 @@
 # Practical Task(NodeJS)
-In this task we have used `NodeJS(14.17.3)` with `Express` framework to create APIs and for database we have user `MongoDB`. We have used `JWT` authentication strategy.
+In this task I have used `NodeJS(14.17.3)` with `Express` framework to create APIs and for database I have user `MongoDB`. I have used `JWT` authentication strategy.
 
 # Installation: 
 1. Install  [NodeJS](https://nodejs.org/en/) & [MongoDB](https://docs.mongodb.com/manual/installation/) on your machine.
