@@ -25,3 +25,6 @@ In this task we have used `NodeJS(14.17.3)` with `Express` framework to create A
 - Show user details - API endpoint is `/v1/user` GET method
 - Edit user details - API endpoint is `/v1/user` PUT method
 - Image file upload to s3 bucket: API endpoint is `/v1/file/upload` POST method
+
+
+> Note: I have added mongo database dump in `database_dump` folder & also I have added postman collection file `Pratical Task.postman_collection.json` for Postman in which all the APIs are defined. 
