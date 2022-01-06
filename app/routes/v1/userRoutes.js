@@ -1,5 +1,3 @@
-'use strict';
-
 const Joi = require('joi');
 const { AVAILABLE_AUTHS } = require(`../../utils/constants`);
 //load controllers
@@ -10,15 +8,11 @@ let routes = [
 		method: 'POST',
 		path: '/v1/file/upload',
 		joiSchema: {
-			headers: {
-				'authorization': Joi.string().required().description('User\'s JWT token.')
-			},
 			/** Route format to use for files upload */
 			formData: {
 				file: Joi.any().meta({ swaggerType: 'file' }).optional().description('Image file to upload')
 			}
 		},
-		auth: AVAILABLE_AUTHS.USER,
 		handler: uploadFile
 	},
 	{

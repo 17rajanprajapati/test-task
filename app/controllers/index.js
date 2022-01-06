@@ -1,4 +1,3 @@
-'use strict';
 /********************************
  **** Managing all the controllers ***
  ********* independently ********

@@ -1,23 +1,10 @@
-"use strict";
-const path = require('path');
-const CONFIG = require('../../config');
 const HELPERS = require("../helpers");
 const { MESSAGES, ERROR_TYPES, NORMAL_PROJECTION } = require('../utils/constants');
 const SERVICES = require('../services');
 const { compareHash, encryptJwt, hashPassword } = require(`../utils/utils`);
 const { s3Bucket } = require('../../config');
 
-/**************************************************
- ***** Auth controller for authentication logic ***
- **************************************************/
 let userController = {};
-
-/**
- * function to get server response.
- */
-userController.getServerResponse = async (payload) => {
-  return HELPERS.responseHelper.createSuccessResponse(MESSAGES.SERVER_IS_WORKING_FINE);
-};
 
 /**
  * function to register a user to the system.
@@ -58,7 +45,9 @@ userController.uploadFile = async (payload) => {
   if (!Object.keys(payload.file).length) {
     throw HELPERS.responseHelper.createErrorResponse(MESSAGES.FILE_REQUIRED_IN_PAYLOAD, ERROR_TYPES.BAD_REQUEST);
   }
-  let fileName = `${payload.user._id}.jpg`;
+  // remove all the whitespaces from filename and replace them with _.
+  let fileName = payload.file.originalname.replace(/ /g, '_');
+  fileName = `${Date.now()}_${fileName}`;
   let fileUrl = await SERVICES.fileUploadService.uploadFileToS3(payload.file.buffer, fileName, s3Bucket.BUCKET_NAME);
   return Object.assign(HELPERS.responseHelper.createSuccessResponse(MESSAGES.FILE_UPLOADED_SUCCESSFULLY), { fileUrl });
 };
@@ -96,12 +85,10 @@ userController.login = async (payload) => {
 userController.updateProfile = async (payload) => {
   if (payload.hasOwnProperty('email')) {
     let isAlreadyExistUser = await SERVICES.userService.getUser({ email: payload.email });
-
     if (isAlreadyExistUser) {
-      let responseMessage = payload.email === isAlreadyExistUser.email ? MESSAGES.EMAIL_CANNOT_BE_SAME_AS_PREVIOUS_EMAIL : MESSAGES.EMAIL_ALREADY_EXISTS;
+      let responseMessage = payload.user._id.equals(isAlreadyExistUser._id) ? MESSAGES.EMAIL_CANNOT_BE_SAME_AS_PREVIOUS_EMAIL : MESSAGES.EMAIL_ALREADY_EXISTS;
       throw HELPERS.responseHelper.createErrorResponse(responseMessage, ERROR_TYPES.BAD_REQUEST);
     }
-
   }
 
   // if user wants to change his password then compare old password.
@@ -117,19 +104,6 @@ userController.updateProfile = async (payload) => {
   }
   let updatedUser = await SERVICES.userService.updateUser({ _id: payload.user._id }, payload, { lean: true, new: true, projection: { ...NORMAL_PROJECTION, password: 0 } });
   return Object.assign(HELPERS.responseHelper.createSuccessResponse(MESSAGES.USER_UPDATED_SUCCESSFULLY), { data: updatedUser });
-};
-
-
-//function to get user
-userController.getUsers = async (payload) => {
-  let criteria = {
-    _id: payload.id
-  };
-  let projection = {
-    password: 0, createdAt: 0, updatedAt: 0, __v: 0, resetPasswordToken: 0, isDeleted: 0
-  };
-  let user = await SERVICES.userService.getUser(criteria, projection);
-  return Object.assign(HELPERS.responseHelper.createSuccessResponse(MESSAGES.USER_DATA_FETCHED_SUCCESSFULLY), { data: user });
 };
 
 

@@ -1,5 +1,3 @@
-'use strict';
-
 const SERVICES = require('../services');
 const Joi = require('joi');
 

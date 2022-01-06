@@ -1,4 +1,3 @@
-'use strict';
 const { userModel } = require(`../models`);
 const utils = require(`../utils/utils`);
 
@@ -25,20 +24,6 @@ userService.updateUser = async (criteria, dataToUpdate, options) => {
  */
 userService.getUser = async (criteria, projection) => {
   return await userModel.findOne(criteria, projection).lean();
-};
-
-/**
- * function to create new user into the system.
- */
-userService.createUser = async (payload) => {
-  return await userModel(payload).save();
-};
-
-/**
- * function to fetch users from the system based on criteria.
- */
-userService.getUsers = async (criteria) => {
-  return await userModel.find(criteria);
 };
 
 module.exports = userService;

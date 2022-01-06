@@ -1,4 +1,3 @@
-"use strict";
 /************* Modules ***********/
 const MONGOOSE = require('mongoose');
 const Schema = MONGOOSE.Schema;

@@ -1,5 +1,3 @@
-"use strict";
-
 const routes = require('../routes');
 const routeUtils = require('../utils/routeUtils');
 

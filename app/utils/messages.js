@@ -1,5 +1,4 @@
 module.exports = {
-  SERVER_IS_WORKING_FINE: 'Server is working fine',
   EMAIL_ALREADY_EXISTS: 'Email already exists! Try with other email',
   USER_REGISTERED_SUCCESSFULLY: 'User registered successfully',
   EMAIL_NOT_REGISTERED: 'This email is not registered with system',

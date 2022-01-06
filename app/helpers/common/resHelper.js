@@ -22,17 +22,6 @@ let RESPONSE = {
                 type: 'BAD_REQUEST',
             };
         },
-        MONGO_EXCEPTION: (msg) => {
-            if (!msg) {
-                msg = '';
-            }
-            return {
-                statusCode: 100,
-                msg: msg,
-                status: false,
-                type: 'MONGO_EXCEPTION',
-            };
-        },
         ALREADY_EXISTS: (msg) => {
             if (!msg) {
                 msg = '';
@@ -42,17 +31,6 @@ let RESPONSE = {
                 msg: msg,
                 status: false,
                 type: 'ALREADY_EXISTS',
-            };
-        },
-        FORBIDDEN: (msg) => {
-            if (!msg) {
-                msg = '';
-            }
-            return {
-                statusCode: 403,
-                msg: msg,
-                status: false,
-                type: 'Forbidden',
             };
         },
         INTERNAL_SERVER_ERROR: (msg) => {
@@ -75,17 +53,6 @@ let RESPONSE = {
                 msg: msg,
                 status: false,
                 type: 'UNAUTHORIZED',
-            };
-        },
-        SOCKET_ERROR: (msg) => {
-            if (!msg) {
-                msg = '';
-            }
-            return {
-                statusCode: 600,
-                msg: msg,
-                status: false,
-                type: 'SOCKET_ERROR',
             };
         }
     },

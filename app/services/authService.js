@@ -1,8 +1,7 @@
-const jwt = require('jsonwebtoken');
-
-const { SECURITY, MESSAGES, ERROR_TYPES } = require('../utils/constants');
+const { MESSAGES, ERROR_TYPES } = require('../utils/constants');
 const HELPERS = require("../helpers");
 const { userModel } = require(`../models`);
+const { decryptJwt } = require('../utils/utils');
 
 let authService = {};
 
@@ -33,7 +32,7 @@ let validateUser = async (request) => {
     try {
         let decodedToken;
         try {
-            decodedToken = jwt.verify(request.headers.authorization, SECURITY.JWT_SIGN_KEY);
+            decodedToken = decryptJwt(request.headers.authorization)
         } catch (err) {
             return { isAuthorized: false, msg: MESSAGES.SESSION_EXPIRED }
         }
