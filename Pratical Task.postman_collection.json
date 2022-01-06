@@ -1,0 +1,182 @@
+{
+	"info": {
+		"_postman_id": "6c070aae-7f7c-464f-9b08-33066e3cf079",
+		"name": "Pratical Task",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "File Upload API",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/home/chicmic/Downloads/profile.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/v1/file/upload",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"file",
+						"upload"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SignUp API",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZDZlNDJmZDJiMmZiNmIwMTk4NDA4MiIsImRhdGUiOjE2NDE0NzM0MzE5MzcsImlhdCI6MTY0MTQ3MzQzMSwiZXhwIjoxNjQxNDc0MzMxfQ.OOhP_5pCFXfWxznZuhWhJU1E62RXuGLvLZeSreRtdS4",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"password\": \"12345\",\n    \"firstName\": \"Rajan\",\n    \"lastName\": \"Kumar\",\n    \"email\": \"example@example.com\",\n    \"profileImage\": \"https://dg3mxdb09w1mp.cloudfront.net/1641473034551_profile.jpg\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/v1/user/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"user",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SignIn API",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZDZlNDJmZDJiMmZiNmIwMTk4NDA4MiIsImRhdGUiOjE2NDE0NzM0MzE5MzcsImlhdCI6MTY0MTQ3MzQzMSwiZXhwIjoxNjQxNDc0MzMxfQ.OOhP_5pCFXfWxznZuhWhJU1E62RXuGLvLZeSreRtdS4",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"password\": \"12345\",\n    \"email\": \"example@example.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/v1/user/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Profile API",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZDZlNzA2ODEwMGIzNzdjZjQ0OWZiNCIsImRhdGUiOjE2NDE0NzQxMjQ0MDIsImlhdCI6MTY0MTQ3NDEyNCwiZXhwIjoxNjQxNDc1MDI0fQ.OQOeK02YKZJ7d1vypHP5c1xTpmb_A13Fu4twwT6E0j8",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/v1/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Profile API",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZDZlNzA2ODEwMGIzNzdjZjQ0OWZiNCIsImRhdGUiOjE2NDE0NzQxMjQ0MDIsImlhdCI6MTY0MTQ3NDEyNCwiZXhwIjoxNjQxNDc1MDI0fQ.OQOeK02YKZJ7d1vypHP5c1xTpmb_A13Fu4twwT6E0j8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"oldPassword\": \"12345\",\n    \"newPassword\": \"123456\",\n    \"firstName\": \"Rajan\",\n    \"lastName\": \"Singh\",\n    \"email\": \"example1@example.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/v1/user/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"user",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
